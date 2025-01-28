@@ -11,14 +11,19 @@ import {
   } from "react-native";
 import Header from '../components/Header';
 import Penaltycard from '../components/Penaltycard';
+import { router } from 'expo-router';
+import Addpenalty from '../components/Addpenalty';
 
 const Penalty = () => {
+  const handleRoutes = () => {
+    router.push('../components/Addpenalty')
+  }
   return (
     <View style={styles.container}>
         <Header title='Penalty Management'/>
         <View style={{alignItems : 'flex-end',paddingBlock: 10, paddingRight : 10}}>
             <TouchableOpacity style={styles.penaltyButton}>
-                <Text style={styles.penaltyText}>Add Penalty</Text>
+                <Text style={styles.penaltyText} onPress={() => handleRoutes()}>Add Penalty</Text>
             </TouchableOpacity>
         </View>
         <ScrollView style={styles.cards}>

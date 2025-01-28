@@ -15,12 +15,13 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-
+import { router, Router } from "expo-router";
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 const { width, height } = Dimensions.get("window");
 
 const data = [
-  { id: "1", title: "CCTV Monitoring", icon: <FontAwesome name="video-camera" size={24} color="#227CF5" />, screen: "CCTVMonitoring" },
+  { id: "1", title: "CCTV Monitoring", icon: <FontAwesome name="video-camera" size={24} color="#227CF5" />, screen: 'CCTVMonitoring' },
   { id: "2", title: "Recorded Footage", icon: <AntDesign name="play" size={24} color="#227CF5" />, screen: "RecordedFootage" },
   { id: "3", title: "Offended Vehicles", icon: <AntDesign name="car" size={24} color="#227CF5" />, screen: "OffendedVehicles" },
   { id: "4", title: "Violators List", icon: <Ionicons name="people" size={24} color="#227CF5" />, screen: "ViolatorsList" },
@@ -28,11 +29,26 @@ const data = [
   { id: "6", title: "Penalty Management", icon: <MaterialCommunityIcons name="card-account-details-star" size={24} color="#227CF5" />, screen: "PenaltyManagement" },
 ];
 
+
 const Dashboard: React.FC = () => {
+  const handleRoutes = (screen: string) => {
+    switch (screen){
+      case 'CCTVMonitoring':
+        router.push('../pages/CCTVMonitoring');
+        break;
+      case 'PenaltyManagement':
+        router.push('../pages/Penalty')
+      case 'ViolatorsList':
+          router.push('../pages/ViolatorsList')
+        case 'RepeatViolators':
+            router.push('../pages/RepeatViolators')
+    }
+  }
 
   const renderItem = ({ item }: { item: typeof data[0] }) => (
     <TouchableOpacity
       style={styles.card}
+      onPress={() => handleRoutes(item.screen)}
     >
       <View style={styles.iconContainer}>
         {item.icon}
@@ -43,15 +59,20 @@ const Dashboard: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Dashboard</Text>
+      <View style={styles.HeaderContainer}>
+        <Text style={styles.text}>Dashboard</Text>
+        <MaterialIcons name="logout" size={24} color="black" />
+    </View>
+      <View style={{marginBlock : width < 400 ? 40 : 50}}>
         <FlatList
-            data={data}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            numColumns={2}
-            columnWrapperStyle={styles.row}
-            contentContainerStyle={styles.flatListContent}
-        />
+              data={data}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id}
+              numColumns={2}
+              columnWrapperStyle={styles.row}
+              contentContainerStyle={styles.flatListContent}
+          />
+      </View>
     </View>
   );
 };
@@ -60,7 +81,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-    paddingTop: width < 400 ? 30 : 60,
+    paddingTop: width < 400 ? 20 : 0,
     height: '100%'
   },
   title: {
@@ -104,6 +125,24 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#227CF5",
   },
+  HeaderContainer:{
+    backgroundColor: '#fff',
+    display : 'flex',
+    flexDirection : 'row',
+    gap : 15,
+    alignItems : 'center',
+    justifyContent : 'space-between',
+    paddingBlock : 10,
+    paddingTop: 16,
+    paddingInline : 30,
+    borderBottomWidth : 3,
+    borderColor : '#227CF5'
+},
+text: {
+    fontSize: 20,
+    fontWeight : 'bold',
+    color: '#000',
+},
 });
 
 export default Dashboard;

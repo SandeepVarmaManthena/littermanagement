@@ -4,9 +4,10 @@ import Dashboard from "./pages/Dashboard";
 import Penalty from "./pages/Penalty";
 import Addpenalty from "./components/Addpenalty";
 import CCTVMonitoring from "./pages/CCTVMonitoring";
+import CCTVLiveFootage from "./components/CCTVLiveFootage";
 
 export default function Index() {
   return (
-    <CCTVMonitoring/>
+    <Dashboard/>
   );
 }
