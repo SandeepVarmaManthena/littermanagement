@@ -2,7 +2,7 @@ import React from 'react'
 import {
     View,
     Text,
-    FlatList,
+    FlatList, 
     TouchableOpacity,
     StyleSheet,
     Image,
@@ -23,7 +23,7 @@ const RepeatViolators = () => {
       const filteredCities = cities.filter(city => city.toLowerCase().includes(filterText.toLowerCase()));
         const handleRoute = (city: string) => {
             router.push({
-              pathname: '../components/CCTVLiveFootage',
+              pathname: '../components/ViolatorsArea',
               params: { city },
             });
           }
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         width: '80%',
         margin: 'auto',
       },
-      cityText: {
+      cityText: { 
         fontSize: 14,
         fontWeight: 'bold',
       },

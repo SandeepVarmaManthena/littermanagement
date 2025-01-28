@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Header from './Header';
+import Header from '../Header';
 import CCTVCard from './CCTVCard';
 import { useRoute } from '@react-navigation/native';
-import North from '../../assets/images/Hyderguda-north.png'
-import Market from '../../assets/images/market.png'
-import Park from '../../assets/images/park.png'
-import Street from '../../assets/images/street.png'
+import North from '../../../assets/images/Hyderguda-north.png'
+import Market from '../../../assets/images/market.png'
+import Park from '../../../assets/images/park.png'
+import Street from '../../../assets/images/street.png'
 
 type RouteParams = {
   city: string;
@@ -30,7 +30,7 @@ const CCTVLiveFootage: React.FC = () => {
   const filteredCities = citiess.filter(city => city.id.toString().includes(filterText.toLowerCase()));
 
   const route = useRoute();
-  const { city } = route.params as RouteParams;22
+  const { city } = route.params as RouteParams;
 
   return (
     <View style={styles.container}>

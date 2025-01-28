@@ -6,20 +6,22 @@ import { router } from 'expo-router';
 
 const cities = ['Hyderabad', 'Warangal', 'Medak', 'Khammam', 'Nizamabad', 'Karimnagar', 'Mahabubnagar'];
 
-const CCTVMonitoring = () => {
-  const [filterText, setFilterText] = useState('');
+const OffendedVehicles = () => {
 
-  const filteredCities = cities.filter(city => city.toLowerCase().includes(filterText.toLowerCase()));
-  const handleRoute = (city: string) => {
-    router.push({
-      pathname: '../components/cctv/CCTVArea',
-      params: { city },
-    });
-  }
+     const [filterText, setFilterText] = useState('');
+    
+      const filteredCities = cities.filter(city => city.toLowerCase().includes(filterText.toLowerCase()));
+      const handleRoute = (city: string) => {
+        router.push({
+          pathname: '../components/VehiclesArea',
+          params: { city },
+        });
+      }
 
   return (
+
     <View style={styles.container}>
-      <Header title='CCTV Monitoring'/>
+      <Header title='Offended Vehicles'/>
       <View style={styles.searchContainer}>
         <View style={styles.iconContainer}>
           <Ionicons name="search" size={24} color="black" />
@@ -42,8 +44,10 @@ const CCTVMonitoring = () => {
         {/* <Ionicons name="ios-home" size={24} color="white" /> */}
       </TouchableOpacity>
     </View>
-  );
-};
+
+  )
+}
+
 
 const { width } = Dimensions.get('window');
 
@@ -101,4 +105,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CCTVMonitoring;
+export default OffendedVehicles

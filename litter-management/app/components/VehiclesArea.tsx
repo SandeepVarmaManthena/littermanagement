@@ -1,25 +1,37 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Header from '../components/Header';
+import Header from './Header';
 import { router } from 'expo-router';
+import { useRoute } from '@react-navigation/native';
 
-const cities = ['Hyderabad', 'Warangal', 'Medak', 'Khammam', 'Nizamabad', 'Karimnagar', 'Mahabubnagar'];
+type RouteParams = {
+    city: string;
+  };
 
-const CCTVMonitoring = () => {
-  const [filterText, setFilterText] = useState('');
+  const cities = ['Hyderguda', 'Masab Tank', 'Gachibowli', 'Attapur', 'Kondapur', 'KPHB', 'Madhapur'];
 
-  const filteredCities = cities.filter(city => city.toLowerCase().includes(filterText.toLowerCase()));
-  const handleRoute = (city: string) => {
-    router.push({
-      pathname: '../components/cctv/CCTVArea',
-      params: { city },
-    });
-  }
+const VehiclesArea = () => {
+
+    const [filterText, setFilterText] = useState('');
+                
+    const filteredCities = cities.filter(city => city.toLowerCase().includes(filterText.toLowerCase()));
+            
+    const route = useRoute();
+    const {city}  = route.params as RouteParams;
+            
+    const handleRoute = (city: string) => {
+        router.push({
+            pathname: './VehiclesData',
+            params: { city },
+        });
+    }
+
 
   return (
+    
     <View style={styles.container}>
-      <Header title='CCTV Monitoring'/>
+      <Header title={city}/>
       <View style={styles.searchContainer}>
         <View style={styles.iconContainer}>
           <Ionicons name="search" size={24} color="black" />
@@ -42,8 +54,10 @@ const CCTVMonitoring = () => {
         {/* <Ionicons name="ios-home" size={24} color="white" /> */}
       </TouchableOpacity>
     </View>
-  );
-};
+
+  )
+}
+
 
 const { width } = Dimensions.get('window');
 
@@ -101,4 +115,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CCTVMonitoring;
+
+export default VehiclesArea

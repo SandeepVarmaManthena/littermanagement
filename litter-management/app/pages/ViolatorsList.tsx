@@ -23,7 +23,7 @@ const ViolatorsList = () => {
       const filteredCities = cities.filter(city => city.toLowerCase().includes(filterText.toLowerCase()));
         const handleRoute = (city: string) => {
             router.push({
-              pathname: '../components/CCTVLiveFootage',
+              pathname: '../components/VArea',
               params: { city },
             });
           }
