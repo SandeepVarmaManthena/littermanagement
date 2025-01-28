@@ -15,7 +15,7 @@ const Penaltycard = (props: { id: number ; title: string | null | undefined; amo
     <View style={styles.container}>
         <View>
             <View>
-                <Text style={styles.id}>Violation {props.id}</Text>
+                <Text style={styles.id}>Violator {props.id}</Text>
             </View>
             <View>
                 <View>

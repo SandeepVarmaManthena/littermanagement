@@ -18,7 +18,7 @@ const CCTVMonitoring = () => {
             <TextInput style={styles.searchInput} placeholder="Search by city" />
         </View>
       </View>
-      <ScrollView style={{paddingBlock : 10}}>
+      <ScrollView style={{paddingBlock : 10,marginBlock : 10}}>
       {cities.map((city, index) => (
             <TouchableOpacity key={index} style={styles.cityButton}>
                 <Text style={styles.cityText}>{city}</Text>
