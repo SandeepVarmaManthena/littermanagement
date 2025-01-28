@@ -30,7 +30,7 @@ const RepeatViolators = () => {
   
       return (
     <View style={styles.container}>
-        <Header title='Violators'/>
+        <Header title='Repeat Violators'/>
         <View style={styles.searchContainer}>
         <View style={styles.iconContainer}>
           <Ionicons name="search" size={24} color="black" />
