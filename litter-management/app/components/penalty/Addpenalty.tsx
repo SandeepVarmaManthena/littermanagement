@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
-import Header from './Header';
+import Header from '../Header';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import DatePicker from 'react-native-date-picker';
 

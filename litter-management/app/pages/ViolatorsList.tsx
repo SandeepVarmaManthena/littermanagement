@@ -23,7 +23,7 @@ const ViolatorsList = () => {
       const filteredCities = cities.filter(city => city.toLowerCase().includes(filterText.toLowerCase()));
         const handleRoute = (city: string) => {
             router.push({
-              pathname: '../components/VArea',
+              pathname: '../components/violators/VArea',
               params: { city },
             });
           }

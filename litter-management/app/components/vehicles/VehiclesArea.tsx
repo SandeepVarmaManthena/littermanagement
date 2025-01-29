@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Header from './Header';
+import Header from '../Header';
 import { router } from 'expo-router';
 import { useRoute } from '@react-navigation/native';
 
@@ -11,24 +11,25 @@ type RouteParams = {
 
   const cities = ['Hyderguda', 'Masab Tank', 'Gachibowli', 'Attapur', 'Kondapur', 'KPHB', 'Madhapur'];
 
-const ViolatorsArea = () => {
+const VehiclesArea = () => {
 
-     const [filterText, setFilterText] = useState('');
-        
-          const filteredCities = cities.filter(city => city.toLowerCase().includes(filterText.toLowerCase()));
-    
-            const route = useRoute();
-              const {city}  = route.params as RouteParams;
-    
-          const handleRoute = (city: string) => {
-              router.push({
-                pathname: './CCTVLiveFootage',
-                params: { city },
-              });
-            }
+    const [filterText, setFilterText] = useState('');
+                
+    const filteredCities = cities.filter(city => city.toLowerCase().includes(filterText.toLowerCase()));
+            
+    const route = useRoute();
+    const {city}  = route.params as RouteParams;
+            
+    const handleRoute = (city: string) => {
+        router.push({
+            pathname: './VehiclesData',
+            params: { city },
+        });
+    }
 
 
   return (
+    
     <View style={styles.container}>
       <Header title={city}/>
       <View style={styles.searchContainer}>
@@ -53,6 +54,7 @@ const ViolatorsArea = () => {
         {/* <Ionicons name="ios-home" size={24} color="white" /> */}
       </TouchableOpacity>
     </View>
+
   )
 }
 
@@ -114,4 +116,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default ViolatorsArea
+export default VehiclesArea

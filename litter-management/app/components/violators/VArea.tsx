@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Header from './Header';
+import Header from '../Header';
 import { router } from 'expo-router';
 import { useRoute } from '@react-navigation/native';
 
@@ -22,7 +22,7 @@ const VArea = () => {
         
               const handleRoute = (city: string) => {
                   router.push({
-                    pathname: './CCTVLiveFootage',
+                    pathname: './VList',
                     params: { city },
                   });
                 }

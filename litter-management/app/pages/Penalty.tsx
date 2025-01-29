@@ -10,13 +10,12 @@ import {
     ScrollView,
   } from "react-native";
 import Header from '../components/Header';
-import Penaltycard from '../components/Penaltycard';
+import Penaltycard from '../components/penalty/Penaltycard';
 import { router } from 'expo-router';
-import Addpenalty from '../components/Addpenalty';
 
 const Penalty = () => {
   const handleRoutes = () => {
-    router.push('../components/Addpenalty')
+    router.push('../components/penalty/Addpenalty')
   }
   return (
     <View style={styles.container}>

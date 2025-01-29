@@ -23,7 +23,7 @@ const RepeatViolators = () => {
       const filteredCities = cities.filter(city => city.toLowerCase().includes(filterText.toLowerCase()));
         const handleRoute = (city: string) => {
             router.push({
-              pathname: '../components/ViolatorsArea',
+              pathname: '../components/repeat/ViolatorsArea',
               params: { city },
             });
           }

@@ -1,37 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import Header from '../Header';
 import { Ionicons } from '@expo/vector-icons';
-import Header from './Header';
-import { router } from 'expo-router';
 import { useRoute } from '@react-navigation/native';
+import ViolatorCard from './ViolatorCard';
 
 type RouteParams = {
     city: string;
   };
 
   const cities = ['Hyderguda', 'Masab Tank', 'Gachibowli', 'Attapur', 'Kondapur', 'KPHB', 'Madhapur'];
+  
+const VList = () => {
 
-const VehiclesArea = () => {
-
-    const [filterText, setFilterText] = useState('');
+     const [filterText, setFilterText] = useState('');
                 
     const filteredCities = cities.filter(city => city.toLowerCase().includes(filterText.toLowerCase()));
             
     const route = useRoute();
     const {city}  = route.params as RouteParams;
-            
-    const handleRoute = (city: string) => {
-        router.push({
-            pathname: './VehiclesData',
-            params: { city },
-        });
-    }
-
-
+                      
   return (
-    
     <View style={styles.container}>
-      <Header title={city}/>
+        <Header title={city}/>
       <View style={styles.searchContainer}>
         <View style={styles.iconContainer}>
           <Ionicons name="search" size={24} color="black" />
@@ -43,18 +34,15 @@ const VehiclesArea = () => {
           />
         </View>
       </View>
-      <ScrollView style={{paddingBlock : 10,marginBlock : 10}}>
-        {filteredCities.map((city, index) => (
-          <TouchableOpacity key={index} style={styles.cityButton} onPress={() => handleRoute(city)}>
-            <Text style={styles.cityText}>{city}</Text>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
-      <TouchableOpacity style={styles.homeButton}>
-        {/* <Ionicons name="ios-home" size={24} color="white" /> */}
-      </TouchableOpacity>
+        <ScrollView>
+            <ViolatorCard/>
+            <ViolatorCard/>
+            <ViolatorCard/>
+            <ViolatorCard/>
+            <ViolatorCard/>
+            <ViolatorCard/>
+        </ScrollView>
     </View>
-
   )
 }
 
@@ -91,29 +79,6 @@ const styles = StyleSheet.create({
     width: '80%',
     paddingBlock: width < 400 ? 10 : 10,
   },
-  cityButton: {
-    backgroundColor: '#fff',
-    paddingBlock: 20,
-    borderRadius: 10,
-    marginTop: 20,
-    alignItems: 'center',
-    boxShadow: '0px 0px 5px 0px #00000040',
-    width: '80%',
-    margin: 'auto',
-  },
-  cityText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  homeButton: {
-    position: 'absolute',
-    bottom: 20,
-    left: '50%',
-    transform: [{ translateX: -25 }],
-    padding: 15,
-    borderRadius: 50,
-  },
-});
+})
 
-
-export default VehiclesArea
+export default VList
