@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     addTxt: {
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: width < 400 ? 18 : 20,
+        fontSize: width < 400 ? 16 : 18,
         color: '#fff',
     },
 });
@@ -173,23 +173,7 @@ const AddPenalty: React.FC = () => {
                     keyboardType="numeric"
                 />
                 <Text style={styles.label}>Date of Violation</Text>
-                <TouchableOpacity style={styles.input} onPress={showDatePicker}>
-                    <Text>{date.toDateString()}</Text>
-                </TouchableOpacity>
-                {/* Date Picker */}
-                <DatePicker
-                    modal
-                    open={isDatePickerVisible}
-                    date={date}
-                    mode="date"
-                    onConfirm={(selectedDate) => {
-                        setDatePickerVisibility(false);
-                        setDate(selectedDate);
-                    }}
-                    onCancel={() => {
-                        setDatePickerVisibility(false);
-                    }}
-                />
+                
             </View>
             <TouchableOpacity style={styles.addBtn} onPress={handleSubmit}>
                 <Text style={styles.addTxt}>Add Penalty</Text>

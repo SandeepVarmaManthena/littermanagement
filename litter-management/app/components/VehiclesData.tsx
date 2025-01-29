@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, FlatList, StyleSheet, TouchableOpacity,Dimensions } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Fontisto from '@expo/vector-icons/Fontisto';
@@ -8,6 +8,7 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Header from './Header';
+import { Ionicons } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 
 interface Vehicle {
@@ -80,6 +81,8 @@ const VehicleItem: React.FC<VehicleItemProps> = ({ type, registration, penalties
         </View>
     );
   };
+  const cities = ['Hyderabad', 'Warangal', 'Medak', 'Khammam', 'Nizamabad', 'Karimnagar', 'Mahabubnagar'];
+
   
 const VehiclesData = () => {
 
@@ -91,15 +94,22 @@ const VehiclesData = () => {
 
     const route = useRoute();
     const {city}  = route.params as RouteParams;
+const [filterText, setFilterText] = useState('');
 
+  const filteredCities = cities.filter(city => city.toLowerCase().includes(filterText.toLowerCase()));
 
   return (
     <View style={styles.container}>
             <Header title={city}/>
-           <View style={styles.iconContainer}>
-            <EvilIcons name="search" size={24} color="black" style={styles.searchIcon} />
-            <TextInput placeholder="Search by vehicle type" />
-            <FontAwesome name="sliders" size={24} color="black" /></View>
+            <View style={styles.iconContainer}>
+                <Ionicons name="search" size={24} color="black" />
+                <TextInput
+                            style={styles.searchInput}
+                            placeholder="Search by city"
+                            value={filterText}
+                            onChangeText={setFilterText}
+                          />
+            </View>
             <View style={styles.iconsContainer}>
                 <TouchableOpacity 
                     style={[styles.iconWrapper, selectedType === 'car' && styles.selectedIcon]}
@@ -142,16 +152,17 @@ const VehiclesData = () => {
                 )}
                 keyExtractor={(item) => item.id}
             />
-            <Button title="Go Back" onPress={() => {}} />
         </View>
 
   )
 }
 
+const { width } = Dimensions.get('window');
+
 
 const styles = StyleSheet.create({
     container: {
-        paddingBlock: 10,
+        paddingBlock: width < 400 ? 20 : 10,
         backgroundColor: '#fff',
     },
     title: {
@@ -171,7 +182,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 5,
-        padding: 3,
+        paddingBlock: 3,
+        width:'90%',
+        margin : 'auto',
         justifyContent:'space-between',
         marginTop: 15,
       },
@@ -206,13 +219,16 @@ fontSize: 18,
 fontWeight: 'bold',
 },
 vehicleItem: {
-    padding: 16,
+    padding: 10,
     backgroundColor: '#fff',
     borderRadius: 8,
-    marginTop: 10,
+    marginBlock: 10,
     flexDirection: 'row', // Change to column for vertical layout
     alignItems: 'center',
-    gap:10,
+    gap:15,
+    boxShadow: '0px 0px 5px 0px #00000040',
+    width: '90%',
+    margin: 'auto'
 },
 vehicleRegistration: {
     fontSize: 16,
@@ -222,7 +238,11 @@ vehiclePenalties: {
     fontSize: 14,
     marginTop: 4,
     color: '#888',
-}
+},
+searchInput: {
+    width: '80%',
+    paddingBlock: width < 400 ? 10 : 10,
+  },
 
 });
 

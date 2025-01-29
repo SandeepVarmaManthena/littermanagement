@@ -17,6 +17,7 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { router, Router } from "expo-router";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import Toast from "react-native-toast-message";
 
 const { width, height } = Dimensions.get("window");
 
@@ -38,10 +39,24 @@ const Dashboard: React.FC = () => {
         break;
       case 'PenaltyManagement':
         router.push('../pages/Penalty')
+        break;
       case 'ViolatorsList':
-          router.push('../pages/ViolatorsList')
-        case 'RepeatViolators':
-            router.push('../pages/RepeatViolators')
+        router.push('../pages/ViolatorsList')
+        break;
+      case 'RepeatViolators':
+        router.push('../pages/RepeatViolators')
+        break;
+      case 'OffendedVehicles':
+        router.push('../pages/OffendedVehicles')
+        break;
+      case 'RecordedFootage':
+        router.push('../pages/Recorded')
+        break;
+      default :
+        Toast.show({
+          type : 'info',
+          text1 : 'This Page is in Construction'
+        })
     }
   }
 

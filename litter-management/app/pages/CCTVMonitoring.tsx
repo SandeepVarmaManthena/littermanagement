@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Dimens
 import { Ionicons } from '@expo/vector-icons';
 import Header from '../components/Header';
 import { router } from 'expo-router';
+import CCTVArea from '../components/cctv/CCTVArea';
 
 const cities = ['Hyderabad', 'Warangal', 'Medak', 'Khammam', 'Nizamabad', 'Karimnagar', 'Mahabubnagar'];
 
